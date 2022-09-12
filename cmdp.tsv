@@ -1,0 +1,544 @@
+.	設定
+@	_config
+;path_macrodll	%cmdp_dir%\macrodll-64.dll
+;debug_soft	%hidemac_dir%\HmSharedOutputPane_x64\HmSharedOutputPane.exe
+;path_tooljs	%cmdp_dir%\tool.js
+
+@	_path
+prog	%PROGRAMFILES%
+prog_86	%PROGRAMFILES(X86)%
+tools	c:\tools
+user	%USERPROFILE%
+hidemac_dir	%OneDriveConsumer%\config\HideMac
+wsl	\\wsl$\Ubuntu
+
+@	_ext_type
+_sound	mp3 asf mid wma wav cue ac3
+_mov	mpg mp4 m4v avi wmv asf ts
+_web	html htm xml mht url pdf
+_img	jpg jpeg gif bmp tif tiff png pcx ico wmf emf psd
+_arc	zip rar lzh 7z bza gza cab yz1 tgz tbz gz bz2 tar
+
+@	_exe_path
+prog	%PROGRAMFILES%
+prog86	%PROGRAMFILES(X86)%
+tools	%tools%
+
+@	_alias
+filt	filter_plus
+dd	deldir
+list	ls
+tree	folder
+favorite	bookmark
+mkdir	new/folder
+md	new/folder
+setting	option
+
+.	コマンド定義 短縮形
+..	cmd
+@	_short_cmd
+option	オプション...
+remove	ハードウェアの安全な取り外しメニュー
+unplug	ハードウェアの安全な取り外しメニュー
+all	すべて選択
+invert	選択の切り替え
+del	削除(ごみ箱に入れない)
+up	上のフォルダメニュー
+drive	ドライブメニュー
+hist_menu	履歴メニュー
+sort	ソートメニュー
+name	名前ソート
+size	サイズソート
+type	種類ソート
+time	更新日時ソート
+key	キー割り当て...
+attr	属性と日時...
+bookmark	ブックマーク枠を表示してフォーカス
+history	履歴枠を表示してフォーカス
+folder	フォルダ枠を表示してフォーカス
+split	タブを分割/分割解除
+splitoff	分割解除
+close/all	このタブ以外を閉じる
+close/right	右のタブを全て閉じる
+tab_prop	タブごとのプロパティ...
+conf/tool	ツールの整理...
+conf/key	キー割り当て...
+conf/hfile	オプション...
+conf/bookmark	ブックマークの整理...
+conf/gesture	ジェスチャ...
+copyto	フォルダへコピー...
+moveto	フォルダへ移動...
+shortcut	ショートカットの貼り付け
+search/pane	検索枠
+tablist	タブ一覧...
+grep	grepの実行
+cmd	コマンドプロンプト
+explorer_get	エクスプローラから秀丸ファイラーClassicに切り替え
+restart	デスクトップ保存/復元して再起動
+	
+..	open
+@	_short_open
+home	%USERPROFILE%, ユーザーフォルダー
+mydoc	shell:Personal, マイドキュメントフォルダー
+desktop	shell:desktop, デスクトップフォルダー
+download	shell:Downloads, ダウンロードフォルダー
+gomibako	shell:RecycleBinFolder, ゴミ箱
+pc	shell:MyComputerFolder, コンピューター
+start	shell:Start Menu, スタートメニューフォルダー
+onedrive	%OneDriveConsumer%, OneDriveフォルダー
+onedoc	%OneDriveConsumer%\documents, ドキュメント@OneDrive
+macdir	%OneDriveConsumer%\config\hidemac, 秀丸マクロディレクトリ
+appdata	%APPDATA%, AppDataフォルダー
+tools	%tools%
+
+..	tool
+@	_short_tool
+zip	7zipでzipアーカイブ
+refresh_plus	更新+
+filter_plus	フィルター+
+mdfilt	フィルター文字列のフォルダを作ってそこに送る
+
+.	コマンド定義
+..	フォーカスを渡す系 テキスト系
+@	hidemaru
+capt	秀丸エディタ
+openallby	-
+
+@	hide_mac
+capt	秀丸エディタ マクロ実行
+ext	mac
+openby	hidemaru
+arg	/x
+
+@	vscode
+capt	VS Code
+openby	Microsoft VS Code\Code.exe
+
+@	notepad
+capt	メモ帳
+openby	notepad.exe
+
+@	exec_script
+capt	秀丸ファイラースクリプト実行
+ext	js vbs
+script	%focused%
+
+..	フォーカスを渡す系 ブラウザ系
+@	chrome
+capt	Google Chrome
+ext	_web _img md
+openby	Google/Chrome/Application/chrome.exe
+
+@	firefox
+capt	Firefox
+ext	_web
+openby	Mozilla Firefox/firefox.exe
+
+@	edge
+capt	Edge
+ext	_web epub md
+openby	msedge.exe
+
+..	画像・メディア
+@	neeview
+capt	NeeView
+ext	_arc _img folder
+openby	-
+
+@	irfan
+capt	Irfan View
+ext	_img
+openby	IrfanView\i_view32.exe
+
+@	paint
+capt	ペイント
+ext	_img
+openby	mspaint.exe
+
+@	foobar2000
+capt	Foobar2000
+ext	_sound folder
+openby	-
+
+@	vlc
+capt	VLC Media Player
+ext	_mov _sound
+openby	VideoLAN\VLC\vlc.exe
+
+@	sinku
+capt	真空スーパーライト
+ext	_mov
+openby	SinkuSuperLite
+
+@	mpc_be
+capt	MPC-BE
+ext	_mov
+openby	MPC-BE x64/mpc-be64.exe
+
+..	ディレクトリを渡す系
+@	explorer
+capt	エクスプローラー
+opendirby	explorer.exe
+
+@	powershell
+capt	PowerShell
+run	pwsh.exe
+arg	-NoExit -Command Set-Location "'%current_dir%'"
+
+@	git
+capt	Git-GUI
+run	Git\cmd\git-gui.exe
+arg	--working-dir "%current_dir%"
+
+@	xf
+capt	X-Finder
+opendirby	XFinder\xf.exe
+
+@	erename
+capt	E-rename
+opendirby	E-rename3\erename.exe
+
+@	xnconvert
+capt	XnConvert
+opendirby	-
+
+@	xnview
+capt	XnView
+opendirby	XnViewMP\xnviewmp.exe
+
+..	ファイル操作系
+@	lhaplus
+capt	Lhaplus
+ext	_arc
+openeachby	-
+
+@	unzip
+capt	7zipで解凍
+openeachby	7-Zip\7zG.exe
+arg	-o"%current_dir%\*" -spe x
+ext	_arc
+
+@	winexchange
+capt	WinExChange
+file_only	yes
+openby	-
+
+@	unlocker
+capt	Unlocker
+file_only	yes
+openby	-
+
+@	ext
+capt	拡張子変更
+file_only	yes
+tool	change_ext
+
+@	base64enc
+capt	base64エンコード
+file_only	yes
+js	var fn_out = focused.basename().fullpath( 'txt' );
+js	if ( actx.fs.FileExists( fn_out ) ) {
+js	    Mesage( "ファイルが既にあります\n" + fn_out );
+js	    EndMacro();
+js	}
+js	_run( 'certutil.exe -f -encode ' + focused.q() + ' ' + fn_out.q(), true );
+
+..	表示設定系
+@	ls
+capt	詳細表示
+js	SetView( 0 );
+
+@	img
+capt	縮小版
+js	SetView( 4 );
+
+..	新規作成系
+@	new/
+capt	新規作成系
+
+@	new/folder
+capt	新規フォルダー
+arg_input	フォルダー名, 新規フォルダー
+js	actx.fs.CreateFolder( js_arg.fullpath() );
+
+@	new/file
+capt	新規テキストファイル
+arg_input	ファイル名, 新規ファイル.txt
+js	actx.fs.CreateTextFile( js_arg.fullpath( js_arg.ext()  ? '' : 'txt' ) );
+
+..	ファイル送る系
+@	send_to_focused
+capt	選択ファイルをフォーカスへ
+ext	folder
+js	SendTo( focused, 4 );
+
+@	send_to_parent
+capt	選択ファイルを親ディレクトリへ
+js	SendTo( GetDirectory().parent(), 4 ); 
+
+@	deldir
+capt	カレントディレクトリ削除
+js	var dn = GetDirectory();
+js	var od = actx.fs.GetFolder( dn );
+js	if ( od.SubFolders.Count + od.Files.Count ) {
+js	    message( 'ディレクトリが空ではないので、削除できません' );
+js	} else {
+js	    if ( getTabState( getCurrentTab(), 0 ) )
+js	        command( 'タブをロック' );
+js	    open( dn.parent() );
+js	    actx.fs.DeleteFolder( dn );
+js	}
+
+..	検索系
+@	search/
+capt	検索キット系
+
+@	search/es
+capt	Everything検索
+script	searchkit
+arg	es_search
+
+@	search/win
+capt	Windowsインデックス検索
+script	searchkit
+arg	win_search
+
+@	search/today
+capt	今日編集したファイルからEverything検索
+script	searchkit
+arg	es_today
+
+@	search/subfolder
+capt	サブフォルダーからEverything検索
+script	searchkit
+arg	es_subfolder
+
+..	help系
+@	help/
+capt	ヘルプ系
+
+@	help/hfiler
+capt	ヘルプ-秀丸ファイラー
+run	https://help.maruo.co.jp/hmfilerclassic/
+
+@	help/hfiler_local
+capt	ヘルプ-秀丸ファイラー ローカル
+cmd	ヘルプ
+
+@	help/scriptt
+capt	ヘルプ-秀丸ファイラースクリプト
+run	https://help.maruo.co.jp/hmfilerclassic/hmfilerclassic_script.html
+
+@	help/cmdp
+capt	ヘルプ-コマンドパレット
+run	%cmdp_dir%\readme.html
+
+@	help/relnote
+capt	改版履歴
+run	https://hide.maruo.co.jp/software/hmfilerclassichist.html
+
+@	help/relnote_beta
+capt	改版履歴 開発版
+run	https://hide.maruo.co.jp/software/hmfilerclassichist_pre.html
+
+.. スクリプト・ツール実行
+@	sorttab
+capt	タブをソート
+script	tabsort
+
+@	close/neighbors
+capt	近隣のタブをタブをまとめて閉じる
+script	close_neighbors
+
+@	close/keyword
+capt	キーワードヒットしたタブを閉じる
+tool	close_by_kw
+
+@	clipfol/
+capt	クリップフォルダー
+
+@	clipfol/new
+capt	クリップフォルダー・新規作成
+script	clipfol
+arg	create
+
+@	clipfol/menu
+capt	クリップフォルダー・メニュー
+script	clipfol
+
+@	clipfol/del
+capt	クリップフォルダー・登録解除
+script	clipfol
+arg	del
+hidden	1
+
+@	clipfol/reload
+capt	クリップフォルダー・再読み込み
+script	clipfol
+arg	reload
+hidden	1
+
+@	clipfol/save
+capt	クリップフォルダー・上書き
+script	clipfol
+arg	save
+hidden	1
+
+@	clipfol/all_tab
+capt	クリップフォルダー・全タブ追加
+script	clipfol
+arg	all_tab
+
+@	paste_plus
+capt	貼り付け＋
+script	clipfol\paste_plus.js
+
+.. その他
+@	close/
+capt	タブを閉じる系
+
+@	open_all_by_hidefile
+capt	すべての選択アイテムを秀丸ファイラーで開く
+js	_foreach_selected( function( item ){ open( item, 2 ); });
+
+@	open_all
+capt	すべての選択アイテムを開く
+js	_foreach_selected( function( item ){ _run( item ); });
+
+@	select_all_plus
+name	全選択+
+js	Command( 'すべて選択' );
+js	SetSpaceSelectMode(1);
+
+@	conf/
+capt	設定関係
+
+@	search/select
+capt	検索して選択
+arg_input	検索文字列
+js	SelectItem( js_arg.add_wildcard() );
+js	SetSpaceSelectMode(1);
+
+@	hfcmd
+capt	秀丸ファイラーコマンド
+hidden	yes
+js	command( js_arg.trim() );
+arg_input	コマンド, 最新バージョンの確認...
+
+..	edit系
+@	edit/
+capt	各種ファイル編集
+
+@	edit/cmdp
+capt	cmdpスクリプト編集
+run	hidemaru
+arg	%cmdp_dir%\cmdp.js
+
+@	edit/tsv
+capt	cmdp.tsv - cmdp設定用TSVファイル編集
+js	_run( 'hidemaru', fn_tsv );
+
+@	edit/tool
+capt	tool.js - ツールスクリプトファイル編集
+js	_run( 'hidemaru', path.cmdp_dir + '\\tool.js' );
+
+@	cmd_input
+capt	コマンド入力
+hidden	yes
+js	_cmd_input();
+
+.. メニュー
+@	menu/main
+capt	メインメニュー
+menu	hidemaru
+menu	exec_script, s
+menu	neeview, i
+menu	lhaplus
+menu	winexchange, g
+menu	unlocker
+menu	foobar2000
+menu	chrome
+menu	edge
+menu	mpc_be
+menu	vlc
+menu	sinku
+menu	-
+menu	attr
+menu	ext
+menu	-
+menu	erename, r
+menu	xf
+menu	xnconvert
+menu	menu/new
+menu	powershell
+menu	-
+menu	menu/send, ;
+
+@	menu/send
+capt	「送る」メニュー
+menu	send_to_focused, f
+menu	send_to_parent, u
+menu	copyto, c
+menu	moveto, m
+menu	-
+menu	menu/view, ;
+
+@	menu/new
+capt	新規作成メニュー
+key	n
+menu	new/
+
+@	menu/view
+capt	表示メニュー
+menu	ls
+menu	img
+menu	-
+menu	folder
+menu	history
+menu	bookmark
+menu	split
+menu	splitoff
+menu	-
+menu	menu/main, ;
+
+@	menu/
+capt	メニューグループ
+
+@ 	menu/all
+capt	メニューのメニュー
+menu	menu/
+
+.. test、サンプル
+
+@	tool_test
+capt	toolのテスト
+tool	-
+arg	引数文字列
+
+@	auto_update
+capt	自動更新停止の切り替え
+cmd	自動更新停止
+
+@	sample_env
+capt	環境変数サンプル
+js	message( '%COMPUTERNAME%'.env_expand()  );
+
+@	sample_arg_input
+capt	arg_inputの使い方サンプル
+arg_input	入力,hoge
+js	message( '入力は\n' + js_arg );
+
+@	sample_js_error
+capt	js エラーメッセージ
+js	message('エラーが出る'); hoge
+
+@	sample_select
+capt	_selecdt関数のサンプル、複数ファイルを選択して実行
+js	message( _selected().join('\n') );
+
+@	sample_foreach_selected
+capt	_foreach_selected関数のサンプル、複数ファイルを選択して実行
+js	_foreach_selected( function(f){
+js	     return ! question( f + '\n「いいえ」で終了' );
+js	});
+
