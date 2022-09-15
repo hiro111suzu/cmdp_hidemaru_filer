@@ -1,11 +1,10 @@
 ﻿# 秀丸ファイラーコマンドパレット
 ![画像](img.png) 
 
-|k        |v             |
-|:--------|:-------------|
-|作者     |suzu          |
-|versiont |1             |
-|公開     |2022-09-03 土 |
+[作者: suzu](https://github.com/hiro111suzu/hidemaru_docs/blob/main/README.md) /
+[バージョン: 1](https://github.com/hiro111suzu/cmdp_hidemaru_filer/releases/) /
+[GitHub](https://github.com/hiro111suzu/cmdp_hidemaru_filer) /
+[公式ライブラリ](https://hide.maruo.co.jp/lib/hmfcscript/cmdphf_v1.html)
 
 # 目次
 - [秀丸ファイラーコマンドパレット](#秀丸ファイラーコマンドパレット)
