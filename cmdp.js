@@ -1,4 +1,5 @@
 //. config / global var
+var time_start = tickCount;
 try {
 	eval( loadTextFile( ScriptFullName.replace( /\\[^\\]+\.js$/, '\\common.js' ) ) );
 } catch( err ) {
@@ -23,6 +24,7 @@ var separator = {
 }
 
 var title_script = '秀丸ファイラー コマンドパレット';
+var mod_key = '';
 
 //. main
 //.. user 設定読み込み
@@ -107,7 +109,7 @@ if ( getArg( 0 ) ) {
 	var a2 = getArg(1);
 	_debug_log( { '引数1': a1, '引数2': a2 }, 'スクリプト引数受け取り' );
 	if ( ! _job( a1, a2 ) )
-		_error([ 'コマンド実行失敗', 'スクリプト引数', getArg(0) ]);
+		_error([ 'コマンド実行失敗', 'スクリプト引数', a1 ]);
 } else {
 	if ( ! _cmd_input() )
 		_error([ 'コマンド実行失敗', '不明な問題' ]);		
@@ -165,6 +167,7 @@ function _cmd_input( group ) {
 //	item_set_string = '';
 
 	//... input
+//	_time_log( 'command list' );
 	var cmd_line = LoadDll( user_conf.path_macrodll ).EDIT_CREATE(
 		GetCurrentWindowHandle(),
 		item_set_string || 'no command',
@@ -173,6 +176,10 @@ function _cmd_input( group ) {
 			: title_script
 //				 + ' (' + item_set_string.split(',').length + 'コマンド)'
 	);
+	mod_key = "";
+	if ( _iskeydown( 0x10 ) ) mod_key = 'shift';
+//	if ( _iskeydown( 0x12 ) ) mod_key = 'alt';
+	if ( _iskeydown( 0x11 ) ) mod_key = 'ctrl';
 
 	if ( ! cmd_line ) {
 		_debug_log( 'エスケープ', 'コマンド' );
@@ -186,13 +193,28 @@ function _cmd_input( group ) {
 		cmd_name = group + cmd_name;
 
 	//... 実行
+	// shift / ctrl key
+	var obj_hit = cmd_obj[ cmd_name ];
+	if ( mod_key != '' && obj_hit ) {
+		if ( mod_key == 'ctrl' && obj_hit['script'] ) {
+			cmd_arg = obj_hit['script'];
+			cmd_name = 'edit/script';
+		} else if ( mod_key == 'ctrl' && obj_hit['tool'] ) {
+			cmd_arg = obj_hit['tool'];
+			cmd_name = 'edit/tool';
+		} else {
+			cmd_arg = cmd_name;
+			cmd_name = 'edit/tsv';
+		}
+	}
+
 	//- グループコマンド
 	if ( cmd_name.slice( -1 ) == '/' ) {
 		_debug_log([ 'グループコマンド', cmd_name ]);
 		_cmd_input( cmd_name );
 		return true;
 	}
-	
+
 	//- 実行
 	if ( _job( cmd_name, cmd_arg ) )
 		return true;
@@ -289,7 +311,7 @@ function _filetype_not_match( o ) {
 function _job( cmd_name, arg ) {
 	var obj_hit = cmd_obj[ cmd_name ];
 	if ( ! obj_hit ) {
-		_debug_log( '不明なコマンド処理' );
+		_debug_log( '登録コマンドなし' );
 		return false;
 	}
 	_debug_log( obj_hit, 'obj_hit' );
@@ -424,3 +446,17 @@ function _load_tsv( fn ) {
 	return data;
 }
 
+//.. _iskeydown
+function _iskeydown( num ) {
+	return getKeyState( num ) & 0x8000;
+}
+
+//.. _time_log
+function _time_log( title ) {
+	$msg = ( tickCount - time_start ) + ' msec - ' +name;
+	if ( ! user_conf.debug_soft ) {
+//		message( $msg );
+	} else {
+		_debug_log( $msg );
+	}
+}

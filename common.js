@@ -106,18 +106,8 @@ function _exe_path( name ) {
 
 //.. _exec_script
 function _exec_script( name, args ) {
-	var s = name.env_expand();
-	var p = scriptFullName.parent();
-	var path_set = [
-		s ,
-		p + '\\' + s ,
-		p.parent() + '\\' + s ,
-		p.parent() + '\\' + s + '\\' + s
-	];
-	var ext_set = [ '', '.js', '.vbs' ];
-	for ( var num in path_set ) for ( var num2 in ext_set ) {
-		var fn_script = path_set[ num ] + ext_set[ num2 ];
-		if ( ! fn_script.is_file() ) continue;
+	var fn_script = _find_script( name );
+	if ( fn_script ) {
 		sleep( 50 );
 		_run( FullName, "/m3 /x "
 			+ fn_script.q() //- script –¼
@@ -129,6 +119,24 @@ function _exec_script( name, args ) {
 		return true;
 	}
 }
+
+//.. _find_script
+function _find_script( name ) {
+	var s = name.env_expand();
+	var p = scriptFullName.parent();
+	var path_set = [
+		s ,
+		p + '\\' + s ,
+		p.parent() + '\\' + s ,
+		p.parent() + '\\' + s + '\\' + s
+	];
+	var ext_set = [ '', '.js', '.vbs' ];
+	for ( var num in path_set ) for ( var num2 in ext_set ) {
+		var fn_script = path_set[ num ] + ext_set[ num2 ];
+		if ( fn_script.is_file() ) return fn_script;
+	}
+}
+
 
 //.. _error
 function _error( msg, program_name ) {
