@@ -2,9 +2,11 @@
 ![画像](img.png) 
 
 [作者: suzu](https://github.com/hiro111suzu/hidemaru_docs/blob/main/README.md) /
-[バージョン: 1](https://github.com/hiro111suzu/cmdp_hidemaru_filer/releases/) /
+[バージョン: 1][rel]
 [GitHub](https://github.com/hiro111suzu/cmdp_hidemaru_filer) /
 [公式ライブラリ](https://hide.maruo.co.jp/lib/hmfcscript/cmdphf_v1.html)
+
+[rel]: https://github.com/hiro111suzu/cmdp_hidemaru_filer/releases/
 
 # 概要
 * 「コマンドパレット」を、秀丸ファイラーClassic(以下、秀丸ファイラー)ーに導入するスクリプトです。
@@ -402,9 +404,10 @@ tool	zip
 * VBScriptの場合は、上述の「別のスクリプトファイルを作成」のみ
 
 # 更新履歴
-* v1.1（未リリース）
+* [v1.1][rel]
 	+ Ctrl/Shiftキー押しながらエンターで、TSVファイルのそのコマンドを定義している部分や、toolファイル、スクリプトファイルを開く機能
-* [v1](https://github.com/hiro111suzu/cmdp_hidemaru_filer/releases/)
+	+ ドキュメントをGitHub上に置くことにした
+* [v1][rel]
 	+ 本体と、設定ファイル、ユーザースクリプトファイルを分割
 	+ 設定ファイルをTSV形式とし、設定方法を一新した
 	+ 「open」キーは「秀丸ファイラーで開く」ための機能とし、Windowsシェルで開くためのキーは「run」に変更
