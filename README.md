@@ -2,7 +2,7 @@
 ![画像](img.png) 
 
 [作者: suzu](https://github.com/hiro111suzu/hidemaru_docs/blob/main/README.md) /
-[バージョン: 1][rel]
+[バージョン: 1.1][rel]
 [GitHub](https://github.com/hiro111suzu/cmdp_hidemaru_filer) /
 [公式ライブラリ](https://hide.maruo.co.jp/lib/hmfcscript/cmdphf_v1.html)
 
