@@ -331,7 +331,7 @@ run	https://help.maruo.co.jp/hmfilerclassic/hmfilerclassic_script.html
 
 @	help/cmdp
 capt	ヘルプ-コマンドパレット
-run	%cmdp_dir%\readme.html
+run	%cmdp_dir%\readme.url
 
 @	help/relnote
 capt	改版履歴
